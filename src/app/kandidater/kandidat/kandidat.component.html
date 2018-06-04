@@ -22,10 +22,7 @@
               <input type="hidden" formControlName="cv_poster">
               <input type="hidden" formControlName="image_id">
               <table style="width:100%;" class="personalia">
-                <tr>
-                  <td colspan="3" align="right">
-                  </td>
-                </tr>
+
                 <tr>
                   <td>
                     <mat-form-field>
@@ -42,7 +39,7 @@
                       <input matInput placeholder="mail" type="text" formControlName="mail" autocomplete="off">
                     </mat-form-field>
                   </td>
-                  <td rowspan="6">
+                  <td rowspan="5">
                       
                       <app-image *ngIf="testForm.value.id!='ny'" [objekt]="objekt" (imageEndret)="bildeErLagtInn($event)"></app-image>
       
@@ -104,7 +101,14 @@
                     </td>
                   </tr>
                   <tr>
-                    <td></td><td></td>
+                      <td colspan="4" >
+                          <mat-form-field>
+                              <textarea matInput  placeholder="Beskrivelse av kandidat" type="text" formControlName="tekst" autocomplete="off"  [required]="true"></textarea>
+                            </mat-form-field>
+                      </td>
+                    </tr>
+                  <tr>
+                    <td></td><td></td><td></td>
                     <td>
                       <button mat-raised-button type="submit" [disabled]="testForm.invalid" class="liten-knapp">
                         <mat-icon>save</mat-icon>
