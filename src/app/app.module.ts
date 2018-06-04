@@ -81,7 +81,6 @@ import { RollerComponent } from './roller/roller.component';
 import { UtlaanComponent } from './verktoy/utlaan/utlaan.component';
 import { InnleveringComponent } from './verktoy/innlevering/innlevering.component';
 import { UtleiekalenderComponent } from './brakkerigg/utleiekalender/utleiekalender.component';
-import { BrakkerComponent } from './brakkerigg/brakker/brakker.component';
 import { ResetPassordComponent } from './reset-passord/reset-passord.component';
 import { KandidaterComponent } from './kandidater/kandidater.component';
 import { StickyElementDirective } from './directives/sticky-element.directive';
@@ -122,7 +121,6 @@ import { GjestevelgerComponent } from './brakkerigg/gjestevelger/gjestevelger.co
     UtlaanComponent,
     InnleveringComponent,
     UtleiekalenderComponent,
-    BrakkerComponent,
     ResetPassordComponent,
     KandidaterComponent,
     StickyElementDirective,

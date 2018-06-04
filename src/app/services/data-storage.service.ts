@@ -4,6 +4,9 @@ import { AuthService } from './../signin/auth.service';
 import { Injectable } from '@angular/core';
 import { Response, RequestOptions, Http, Headers, ResponseContentType } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+// import 'rxjs/add/operator/map';
+// tslint:disable-next-line:import-blacklist
+import 'rxjs/Rx';
 
 
 @Injectable()
@@ -15,18 +18,7 @@ export class DataStorageService {
   }
 
 
-  /*
-    ROLLENAVN:
-        lister.harRolle('brukere') 
-        lister.harRolle('verktøy')
-        lister.harRolle('brakkerigg')
-        lister.harRolle('verneutstyr')
-        lister.harRolle('arbeidstøy')
-        lister.harRolle('kandidat')
-        lister.harRolle('stoffkartotek')
-        lister.harRolle('roller')
-        public reqstring = 'https://rig.rj-web.no/public/';
-  */
+
 
   slett(id, objektnavn) {
     const reqString = this.lister.reqstring + objektnavn + '/' + id;
