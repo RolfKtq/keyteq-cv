@@ -1,5 +1,4 @@
 import { Lister } from './services/lister';
-// import { Router } from '@angular/router';
 
 import { AuthService } from './signin/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -25,7 +24,7 @@ export class AppComponent implements OnInit {
     private url: LocationStrategy
   ) { }
 
-
+/*
   ngOnInit() {
     localStorage.clear();
     if (!this.authService.isAuthenticated()) {
@@ -34,5 +33,10 @@ export class AppComponent implements OnInit {
         this.router.navigate(['/signin']);
       }
     }
+  }
+*/
+
+  ngOnInit() {
+        this.router.navigate(['/kandidater']);
   }
 }
