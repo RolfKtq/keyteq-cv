@@ -35,6 +35,7 @@ export class KandidatComponent implements OnInit, OnChanges {
   @Output() objektEndret: EventEmitter<any> = new EventEmitter();
   //  @ViewChild('form') signupForm: NgForm;
 
+  beskrivelseTilPDF;
 
   testForm: FormGroup; // A form is just a group of controls
   constructor(
@@ -119,9 +120,11 @@ export class KandidatComponent implements OnInit, OnChanges {
 
   billedstorrelse = 35;
 
+
   ngOnChanges(changes: SimpleChanges) {
 
     if (this.objekt) {
+      this.beskrivelseTilPDF = this.objekt.tekst;
       this.testForm.setValue(this.objekt);
       if (this.objekt.image_id) {
         this.dss.get(this.objekt.image_id, 'images')
@@ -213,7 +216,7 @@ export class KandidatComponent implements OnInit, OnChanges {
         this.objektEndret.emit(response);
         this.testForm.setValue(response);
       }, (error) => {
-        });
+      });
     }
   }
 
@@ -299,6 +302,21 @@ export class KandidatComponent implements OnInit, OnChanges {
         const kurs: any[] = [] = this.fyllListeneTilUtskriften('kurs', data);
         const erfaring: any[] = this.fyllListeneTilUtskriften('erfaring', data);
         const attest: any[] = this.fyllListeneTilUtskriften('attest', data);
+
+
+//////// 04.06
+
+const str = 'Apples are round, and apples are juicy.'; 
+const splitted = str.split(' ');
+doc.text(20, 90, '----' + splitted.length);
+
+        doc.text(20, 99, this.beskrivelseTilPDF);
+
+        nedover = 205;
+
+
+///////////
+
 
 
         nedover = this.setOppPoster(utdanning, nedover, 'Utdanning:', doc, skrift, fradatoMotVenstre, beskrivelseMotVenstre);
