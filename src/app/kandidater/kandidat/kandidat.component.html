@@ -46,9 +46,7 @@
                       
                       <app-image *ngIf="testForm.value.id!='ny'" [objekt]="objekt" (imageEndret)="bildeErLagtInn($event)"></app-image>
       
-                      <!--
-                    <app-image *ngIf="testForm.value.id!='ny'" [id]="objekt?.image_id" (nyImageId)="nyImageIdSattForKandidat($event)"></app-image>
-                      -->
+
                   </td>
                 </tr>
                 <tr>
@@ -122,6 +120,25 @@
                   </tr>
               </table>
             </form>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel hideToggle="true" style="margin:20px" style="background-color:  rgb(254, 255, 254);">
+              <mat-expansion-panel-header style="background-color: rgb(233, 243, 234);margin:20px" class="mat-elevation-z8">
+                  <mat-panel-title>
+                    Beskrivelse av kandidat
+                  </mat-panel-title>
+                  <mat-panel-description>
+                      <span style="flex: 1 1 auto;"></span>
+                    <mat-icon>account_circle</mat-icon>
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <table style="width:100%;" class="personalia">
+                    <tr>
+                      <td colspan="3" align="right">
+                          {{objekt?.tekst}}
+                      </td>
+                    </tr>
+                </table>
           </mat-expansion-panel>
       
           <mat-expansion-panel hideToggle="true">
