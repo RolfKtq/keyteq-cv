@@ -6,7 +6,6 @@ import { FormGroup, Validators } from '@angular/forms';
 // tslint:disable:comment-format
 // tslint:disable:member-ordering
 // tslint:disable:max-line-length
-
 import { ViewChild } from '@angular/core';
 import { Component, OnInit, Input, Output, SimpleChanges, Inject } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -37,9 +36,7 @@ export class KandidatComponent implements OnInit, OnChanges {
   //  @ViewChild('form') signupForm: NgForm;
 
 
-
   testForm: FormGroup; // A form is just a group of controls
-
   constructor(
     private http: Http,
     private authService: AuthService,
@@ -67,6 +64,7 @@ export class KandidatComponent implements OnInit, OnChanges {
       cv_poster: new FormControl(null),
       primaerkompetanse: new FormControl(null, Validators.required),
       dawinci: new FormControl(null, Validators.required),
+      tekst: new FormControl(null, Validators.required),
     });
 
 
@@ -95,6 +93,7 @@ export class KandidatComponent implements OnInit, OnChanges {
         type_post: '',
         primaerkompetanse: '',
         dawinci: '',
+        tekst: '',
       };
       this.objekt.cv_poster.push(nyttCVElement);
     }
@@ -270,7 +269,6 @@ export class KandidatComponent implements OnInit, OnChanges {
         doc.setDrawColor(0, 61, 122); //MØRK
         doc.setLineWidth(0.1);
         doc.line(186, 55, 186, 290); // vertical line
-
         doc.setDrawColor(133, 175, 204); // LYS
         doc.setLineWidth(0.5);
         doc.line(188, 55, 188, 290);
@@ -336,7 +334,6 @@ export class KandidatComponent implements OnInit, OnChanges {
 
   setOppPoster(utdanning, nedover, type_post, doc, skrift, fradatoMotVenstre, beskrivelseMotVenstre) {
     //let nedover;
-
     doc.setFontSize(16);
 
     if (utdanning.length > 0) {

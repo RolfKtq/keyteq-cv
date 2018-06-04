@@ -73,20 +73,10 @@ import { HomeComponent } from './home/home.component';
 import { BrukereComponent } from './brukere/brukere.component';
 
 
-import { VerktoyComponent } from './verktoy/verktoy.component';
-import { BrakkeriggComponent } from './brakkerigg/brakkerigg.component';
-import { VerneutsyrComponent } from './verneutsyr/verneutsyr.component';
-import { ArbeidstoyComponent } from './arbeidstoy/arbeidstoy.component';
 import { RollerComponent } from './roller/roller.component';
-import { UtlaanComponent } from './verktoy/utlaan/utlaan.component';
-import { InnleveringComponent } from './verktoy/innlevering/innlevering.component';
-import { UtleiekalenderComponent } from './brakkerigg/utleiekalender/utleiekalender.component';
 import { ResetPassordComponent } from './reset-passord/reset-passord.component';
 import { KandidaterComponent } from './kandidater/kandidater.component';
 import { StickyElementDirective } from './directives/sticky-element.directive';
-import { FaktureringComponent } from './brakkerigg/fakturering/fakturering.component';
-import { KunderComponent } from './brakkerigg/kunder/kunder.component';
-import { GjesterComponent } from './brakkerigg/gjester/gjester.component';
 import { KandidatComponent } from './kandidater/kandidat/kandidat.component';
 import { ImageComponent } from './kandidater/kandidat/image/image.component';
 import { UtdanningComponent } from './kandidater/kandidat/utdanning/utdanning.component';
@@ -98,13 +88,7 @@ import { CvKursComponent } from './kandidater/kandidat/kurs/cv-kurs/cv-kurs.comp
 import { CvErfaringComponent } from './kandidater/kandidat/erfaring/cv-erfaring/cv-erfaring.component';
 import { AttestComponent } from './kandidater/kandidat/attest/attest.component';
 import { CvAttestComponent } from './kandidater/kandidat/attest/cv-attest/cv-attest.component';
-import { StoffkartotekComponent } from './stoffkartotek/stoffkartotek.component';
 import { PdfGenerellComponent } from './pdf-generell/pdf-generell.component';
-import { VerktoydetaljerComponent } from './verktoy/verktoydetaljer/verktoydetaljer.component';
-import { LagerComponent } from './verktoy/utlaan/lager/lager.component';
-import { ProsjektComponent } from './verktoy/utlaan/prosjekt/prosjekt.component';
-import { ProsjektlisteComponent } from './verktoy/utlaan/prosjektliste/prosjektliste.component';
-import { GjestevelgerComponent } from './brakkerigg/gjestevelger/gjestevelger.component';
 
 
 @NgModule({
@@ -113,20 +97,10 @@ import { GjestevelgerComponent } from './brakkerigg/gjestevelger/gjestevelger.co
     SigninComponent,
     HomeComponent,
     BrukereComponent,
-    VerktoyComponent,
-    BrakkeriggComponent,
-    VerneutsyrComponent,
-    ArbeidstoyComponent,
     RollerComponent,
-    UtlaanComponent,
-    InnleveringComponent,
-    UtleiekalenderComponent,
     ResetPassordComponent,
     KandidaterComponent,
     StickyElementDirective,
-    FaktureringComponent,
-    KunderComponent,
-    GjesterComponent,
     KandidatComponent,
     ImageComponent,
     UtdanningComponent,
@@ -138,13 +112,7 @@ import { GjestevelgerComponent } from './brakkerigg/gjestevelger/gjestevelger.co
     CvErfaringComponent,
     AttestComponent,
     CvAttestComponent,
-    StoffkartotekComponent,
     PdfGenerellComponent,
-    VerktoydetaljerComponent,
-    LagerComponent,
-    ProsjektComponent,
-    ProsjektlisteComponent,
-    GjestevelgerComponent,
   ],
   imports: [
     BrowserModule,
@@ -192,7 +160,6 @@ import { GjestevelgerComponent } from './brakkerigg/gjestevelger/gjestevelger.co
     MatSnackBarModule,
     MatTooltipModule,
     MatStepperModule,
-  
 
   ],
   providers: [AuthService , DataStorageService, Logo, Lister, { provide: MAT_DATE_LOCALE, useValue: 'no-NB'}, ],
