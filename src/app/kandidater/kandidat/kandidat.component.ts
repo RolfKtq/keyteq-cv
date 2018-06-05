@@ -269,16 +269,16 @@ export class KandidatComponent implements OnInit, OnChanges {
         logoIndex = (logoIndex * logostorrelse);
         logoIndex = Math.trunc(logoIndex);
 
-        doc.setDrawColor(0, 61, 122); //MØRK
-        doc.setLineWidth(0.1);
-        doc.line(186, 55, 186, 290); // vertical line
-        doc.setDrawColor(133, 175, 204); // LYS
-        doc.setLineWidth(0.5);
-        doc.line(188, 55, 188, 290);
+      //  doc.setDrawColor(0, 61, 122); //MØRK
+      //  doc.setLineWidth(0.1);
+       // doc.line(186, 55, 186, 290); // vertical line
+       // doc.setDrawColor(133, 175, 204); // LYS
+       // doc.setLineWidth(0.5);
+       // doc.line(188, 55, 188, 290);
 
-        doc.setDrawColor(105, 181, 88); // GRØNN
-        doc.setLineWidth(1);
-        doc.line(190, 55, 190, 290);
+       // doc.setDrawColor(105, 181, 88); // GRØNN
+       // doc.setLineWidth(1);
+       // doc.line(190, 55, 190, 290);
 
         doc.setFontSize(23);
 
@@ -304,18 +304,27 @@ export class KandidatComponent implements OnInit, OnChanges {
         const attest: any[] = this.fyllListeneTilUtskriften('attest', data);
 
 
-//////// 04.06
+        //////// 04.06
 
-const str = 'Apples are round, and apples are juicy.'; 
-const splitted = str.split(' ');
-doc.text(20, 90, '----' + splitted.length);
 
-        doc.text(20, 99, this.beskrivelseTilPDF);
+
+        //   doc.text(20, 99, this.beskrivelseTilPDF);
+
+
+
+
+
+
+        const lines = doc.splitTextToSize(this.beskrivelseTilPDF, 160);
+
+        doc.text(20, 99, lines);  // 20 er avstand fra venstre kant
+
+
+
+
 
         nedover = 205;
-
-
-///////////
+        ///////////
 
 
 

@@ -16,8 +16,8 @@ export class Logo {
     this.http.get('./assets/img/logo.txt').subscribe(data => {
       this.logo = {
         id: '',
-        width: 1330,
-        height: 427,
+        width: 105,
+        height: 59,
         image: data.text(),
       };
     });
