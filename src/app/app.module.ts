@@ -2,7 +2,7 @@ import { Logo } from './services/logo';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { Lister } from './services/lister';
 import { DataStorageService } from './services/data-storage.service';
-import { AuthService } from './signin/auth.service';
+// import { AuthService } from './signin/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -10,7 +10,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
+import {
+  SocialLoginModule,
+  AuthServiceConfig,
+  GoogleLoginProvider,
+  FacebookLoginProvider,
+} from 'angular5-social-login';
 
 
 import {
@@ -91,6 +99,23 @@ import { CvAttestComponent } from './kandidater/kandidat/attest/cv-attest/cv-att
 import { PdfGenerellComponent } from './pdf-generell/pdf-generell.component';
 
 
+
+export function getAuthServiceConfigs() {
+  const config = new AuthServiceConfig(
+    [
+      {
+        id: FacebookLoginProvider.PROVIDER_ID,
+        provider: new FacebookLoginProvider('Your-Facebook-app-id')
+      },
+      {
+        id: GoogleLoginProvider.PROVIDER_ID,
+        provider: new GoogleLoginProvider('477934884456-2lrfn9qlm53sud1v72lqqeink5ephqci.apps.googleusercontent.com')
+      },
+    ]
+  );
+  return config;
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -161,8 +186,14 @@ import { PdfGenerellComponent } from './pdf-generell/pdf-generell.component';
     MatTooltipModule,
     MatStepperModule,
 
+    SocialLoginModule,
+
   ],
-  providers: [AuthService , DataStorageService, Logo, Lister, { provide: MAT_DATE_LOCALE, useValue: 'no-NB'}, ],
+  providers: [
+    // AuthService, 
+    DataStorageService, Logo, Lister, { provide: MAT_DATE_LOCALE, useValue: 'no-NB', useFactory: getAuthServiceConfigs },
+  ]
+  ,
   bootstrap: [AppComponent]
 })
 export class AppModule { }

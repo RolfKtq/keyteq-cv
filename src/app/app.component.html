@@ -1,4 +1,4 @@
-<mat-toolbar color="primary" style='color: #fff;  background-color:#000' *ngIf="!authService.isAuthenticated()">  
+<mat-toolbar color="primary" style='color: #fff;  background-color:#000' >  
   <div>
     <img md-card-image class="image-card-style" src= "./assets/img/hvit-logo.png">
   </div>
@@ -8,7 +8,7 @@
  
 </mat-toolbar>
 
-<mat-toolbar color="primary" style='color: #fff; background-color:#000' *ngIf="authService.isAuthenticated()">  
+<mat-toolbar color="primary" style='color: #fff; background-color:#000' >  
     
       <div>
         <img md-card-image class="image-card-style" src= "./assets/img/hvit-logo.png">
@@ -18,16 +18,9 @@
       
       <button *ngIf="lister.harRolle('brukere')"   mat-button [routerLink]="['brukere']" class="menu-btn">BRUKERE</button>
       <button *ngIf="lister.harRolle('verktøy')" mat-button [routerLink]="['verktoy']" class="menu-btn">VERKTØY</button> 
-    <!--  <button  mat-button [routerLink]="['verktoy']" class="menu-btn">VERKTØY</button> -->
-
+   
       <button *ngIf="lister.harRolle('brakkerigg')" mat-button [routerLink]="['brakkerigg']" class="menu-btn">BRAKKERIGG</button>
 
-      <!--
-      <button *ngIf="lister.harRolle('verneutstyr')" mat-button [routerLink]="['verneutstyr']" class="menu-btn">VERNEUTSTUR</button>
-      -->
-      <!--
-      <button *ngIf="lister.harRolle('arbeidstøy')" mat-button [routerLink]="['arbeidstoy']" class="menu-btn">ARBEIDSTØY/PPE</button>
-      -->
       
       <button *ngIf="lister.harRolle('kandidat')" mat-button [routerLink]="['kandidater']" class="menu-btn">KANDIDATER (CV)</button>
      

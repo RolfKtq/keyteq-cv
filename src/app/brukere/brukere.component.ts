@@ -15,7 +15,7 @@ import { ErrorStateMatcher } from '@angular/material/core';
 // Disse tre skal slettes når kontakt med database er i egen service
 import { Headers, Http, Response, RequestOptions } from '@angular/http';
 import { Injectable, EventEmitter } from '@angular/core';
-import { AuthService } from './../signin/auth.service';
+// import { AuthService } from './../signin/auth.service';
 import { Lister } from '../services/lister';
 
 
@@ -41,7 +41,7 @@ export class BrukereComponent implements OnInit {
   constructor(
     private dss: DataStorageService,
     private http: Http,
-    private authService: AuthService,
+    // private authService: AuthService,
     private lister: Lister
   ) { }
 
@@ -67,7 +67,7 @@ export class BrukereComponent implements OnInit {
   public rollene: any[];
 
   ngOnInit() {
-    this.authService.getToken();
+    // this.authService.getToken();
     //  this.getUsers().subscribe(
     this.dss.getIndex('users').subscribe(
       (rec: any[]) => {

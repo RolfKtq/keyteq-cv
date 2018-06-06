@@ -1,6 +1,6 @@
   // tslint:disable:member-ordering
 import { HttpHeaders } from '@angular/common/http';
-import { AuthService } from './../signin/auth.service';
+// import { AuthService } from './../signin/auth.service';
 
 import { Injectable } from '@angular/core';
 // import { Http, Response, RequestOptions } from '@angular/http';

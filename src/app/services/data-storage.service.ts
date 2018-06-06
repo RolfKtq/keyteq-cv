@@ -1,6 +1,6 @@
 import { Lister } from './lister';
 import { HttpHeaders } from '@angular/common/http';
-import { AuthService } from './../signin/auth.service';
+// import { AuthService } from './../signin/auth.service';
 import { Injectable } from '@angular/core';
 import { Response, RequestOptions, Http, Headers, ResponseContentType } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -12,7 +12,7 @@ import 'rxjs/Rx';
 @Injectable()
 export class DataStorageService {
   constructor(private http: Http,
-    private authService: AuthService,
+   //  private authService: AuthService,
     private lister: Lister,
   ) {
   }
@@ -22,8 +22,7 @@ export class DataStorageService {
 
   slett(id, objektnavn) {
     const reqString = this.lister.reqstring + objektnavn + '/' + id;
-    return this.http.delete(reqString,
-      this.authService.getOpts()).map(
+    return this.http.delete(reqString).map(
         (response: Response) => {
           const data = response.json();
           return data.data;
@@ -42,7 +41,7 @@ export class DataStorageService {
     if (obj['id']) {
       delete obj['id'];
     }
-    return this.http.post(this.lister.reqstring + objektnavn, obj, this.authService.getOpts()).map(
+    return this.http.post(this.lister.reqstring + objektnavn, obj).map(
       (response: Response) => {
         const data = response.json();
         return data.data;
@@ -58,7 +57,7 @@ export class DataStorageService {
 
   set(obj: any[], objektnavn) {
   // alert(objektnavn);
-    return this.http.put(this.lister.reqstring + objektnavn + '/' + obj['id'], obj, this.authService.getOpts()).map(
+    return this.http.put(this.lister.reqstring + objektnavn + '/' + obj['id'], obj).map(
       (response: Response) => {
         const data = response.json();
         return data.data;
@@ -74,7 +73,7 @@ export class DataStorageService {
 
   get(id, objektnavn) {
     console.log('DSS: get()');
-    return this.http.get(this.lister.reqstring + objektnavn + '/' + id, this.authService.getOpts())
+    return this.http.get(this.lister.reqstring + objektnavn + '/' + id)
       .map(response => {
         return response.json().data;
       }).catch(
@@ -87,7 +86,7 @@ export class DataStorageService {
 
   getIndex(objektnavn) {
     console.log('DSS: getIndex()');
-    return this.http.get(this.lister.reqstring + objektnavn , this.authService.getOpts())
+    return this.http.get(this.lister.reqstring + objektnavn)
       .map(response => {
         return response.json().data;
       }).catch(

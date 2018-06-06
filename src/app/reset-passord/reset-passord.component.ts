@@ -1,4 +1,4 @@
-import { AuthService } from './../signin/auth.service';
+// import { AuthService } from './../signin/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
@@ -18,7 +18,8 @@ import { Lister } from './../services/lister';
 export class ResetPassordComponent implements OnInit {
 
   constructor(private router: Router,
-    private authService: AuthService, private lister: Lister,  private http: Http ) { }
+    // private authService: AuthService, 
+    private lister: Lister,  private http: Http ) { }
 
     ngOnInit() {
     }
@@ -38,8 +39,9 @@ export class ResetPassordComponent implements OnInit {
       const postData = {
         passord: password,
       };
-      return this.http.put(this.lister.reqstring + '/endrer_passord', postData, this.authService.getOpts())
-        .map(response => {
+    //  return this.http.put(this.lister.reqstring + '/endrer_passord', postData, this.authService.getOpts())
+    return this.http.put(this.lister.reqstring + '/endrer_passord', postData)  
+    .map(response => {
           console.log(response);
           return response.json();
         }).catch(

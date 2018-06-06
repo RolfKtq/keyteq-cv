@@ -14,7 +14,7 @@ import { AbstractControl } from '@angular/forms';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { Headers, Http, Response, RequestOptions } from '@angular/http';
 import { Injectable, EventEmitter } from '@angular/core';
-import { AuthService } from './../../signin/auth.service';
+// import { AuthService } from './../../signin/auth.service';
 import { Lister } from '../../services/lister';
 import { OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
 import { NgForm } from '@angular/forms';
@@ -40,7 +40,7 @@ export class KandidatComponent implements OnInit, OnChanges {
   testForm: FormGroup; // A form is just a group of controls
   constructor(
     private http: Http,
-    private authService: AuthService,
+    // private authService: AuthService,
     private lister: Lister,
     private logo: Logo,
     public sanitizer: DomSanitizer,

@@ -1,7 +1,7 @@
 import { Lister } from './services/lister';
 // import { Router } from '@angular/router';
 
-import { AuthService } from './signin/auth.service';
+// import { AuthService } from './signin/auth.service';
 import { Component, OnInit } from '@angular/core';
 import {
   Routes,
@@ -18,7 +18,8 @@ import { LocationStrategy } from '@angular/common';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private authService: AuthService, 
+  constructor(
+    // private authService: AuthService, 
     private router: Router,
     private actRoute: ActivatedRoute,
     private lister: Lister,
@@ -27,6 +28,8 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit() {
+    this.router.navigate(['/signin']);
+    /*
     localStorage.clear();
     if (!this.authService.isAuthenticated()) {
       if (this.url.path().indexOf('/verify') > -1) {
@@ -34,5 +37,6 @@ export class AppComponent implements OnInit {
         this.router.navigate(['/kandidater']);
       }
     }
+    */
   }
 }
