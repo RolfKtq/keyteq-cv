@@ -1,6 +1,5 @@
 import { ImageComponent } from './kandidater/kandidat/image/image.component';
 import { KandidaterComponent } from './kandidater/kandidater.component';
-import { ResetPassordComponent } from './reset-passord/reset-passord.component';
 import { RollerComponent } from './roller/roller.component';
 import { BrukereComponent } from './brukere/brukere.component';
 import { HomeComponent } from './home/home.component';
@@ -17,7 +16,6 @@ const appRoutes: Routes = [
   { path: 'signin', component: SigninComponent },
   { path: 'brukere', component: BrukereComponent },
   { path: 'roller', component: RollerComponent },
-  { path: 'reset_passord', component: ResetPassordComponent },
   { path: 'kandidater', component: KandidaterComponent },
   { path: 'image', component: ImageComponent },
 ];

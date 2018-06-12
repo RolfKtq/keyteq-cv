@@ -8,8 +8,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-
-
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
@@ -24,21 +22,12 @@ import {
   MatToolbarModule,
   MatDatepickerModule,
   MatNativeDateModule,
-
-
   MatTableModule,
-
-
   MatPaginatorModule,
   MatSortModule,
   MatCheckboxModule,
   MatGridListModule,
-
-
 } from '@angular/material';
-
-
-
 
 
 import {
@@ -63,18 +52,11 @@ import {
 
 
 
-
-
-
-
 import { AppComponent } from './app.component';
 import { SigninComponent } from './signin/signin.component';
 import { HomeComponent } from './home/home.component';
 import { BrukereComponent } from './brukere/brukere.component';
-
-
 import { RollerComponent } from './roller/roller.component';
-import { ResetPassordComponent } from './reset-passord/reset-passord.component';
 import { KandidaterComponent } from './kandidater/kandidater.component';
 import { StickyElementDirective } from './directives/sticky-element.directive';
 import { KandidatComponent } from './kandidater/kandidat/kandidat.component';
@@ -98,7 +80,6 @@ import { PdfGenerellComponent } from './pdf-generell/pdf-generell.component';
     HomeComponent,
     BrukereComponent,
     RollerComponent,
-    ResetPassordComponent,
     KandidaterComponent,
     StickyElementDirective,
     KandidatComponent,
