@@ -28,101 +28,101 @@ export class AuthService {
 
     this.timer.subscribe(tick => {
 
-     const diff = new Date().getTime() - (+localStorage.getItem('ts'));
+      const diff = new Date().getTime() - (+localStorage.getItem('ts'));
+
+/*
+      //  console.log(diff);
+      if (diff > (-600000)) {
+
+        return this.refreshToken()
+          .subscribe(
+            response => {
+            }
+            ,
+            (error) => {
+              console.log(error);
+            }
+          );
 
 
- //  console.log(diff);
-    if (diff > (-600000) ) {
-
-      return this.refreshToken()
-      .subscribe(
-      response => {
       }
-      ,
-      (error) => {
-        console.log(error);
-      }
-      );
+
+*/
 
 
-    }
-
-
-
-
-   });
-
-}
-
-
-signinUser(email: string, password: string) {
-  return this.signInWithEmailAndPassword(email, password)
-    .subscribe(
-    response => {
-      this.getRollene().subscribe(
-        resp => {
-          for (let i = 0; i < resp.data.length; i++) {
-            localStorage.setItem(resp.data[i], '');
-          }
-          this.router.navigate(['./home']);
-        });
-    }
-    ,
-    (error) => console.log(error)
-    );
-}
-
-
-
-
-
-
-
-logout() {
-  // husk  å sette passord og email til null
-
-  localStorage.removeItem('t');
-  localStorage.removeItem('ts');
-  localStorage.removeItem('admin');
-
-  localStorage.clear();
-
-  this.token = null;
-  this.router.navigate(['/']);
-
-}
-
-
-refreshToken() {
-
-
-  const postData = {
-    refresh_token: localStorage.getItem('rt'),
-  };
-
-
-  return this.http.post(this.lister.reqstring + 'oauth/refresh', postData, { headers: this.headers }).map(
-    response => {
-      const expDate = new Date();
-      expDate.setSeconds(expDate.getSeconds() + response.json().expires_in);
-      localStorage.setItem('t', response.json().access_token);
-      localStorage.setItem('rt', response.json().refresh_token);
-      this.token = response.json().access_token;
-
-      localStorage.setItem('ts', '' + expDate.getTime());
-  
-      return response.json().access_token;
-    }).catch(
-    (error: Response) => {
-      return Observable.throw('Something went wrong');
     });
 
-}
+  }
 
-// tslint:disable-next-line:member-ordering
-isAuthenticated() {
-  return this.token != null;
-}
+
+  signinUser(email: string, password: string) {
+    return this.signInWithEmailAndPassword(email, password)
+      .subscribe(
+        response => {
+          this.getRollene().subscribe(
+            resp => {
+              for (let i = 0; i < resp.data.length; i++) {
+                localStorage.setItem(resp.data[i], '');
+              }
+              this.router.navigate(['./home']);
+            });
+        }
+        ,
+        (error) => console.log(error)
+      );
+  }
+
+
+
+
+
+
+
+  logout() {
+    // husk  å sette passord og email til null
+
+    localStorage.removeItem('t');
+    localStorage.removeItem('ts');
+    localStorage.removeItem('admin');
+
+    localStorage.clear();
+
+    this.token = null;
+    this.router.navigate(['/']);
+
+  }
+
+
+  refreshToken() {
+
+
+    const postData = {
+      refresh_token: localStorage.getItem('rt'),
+    };
+
+
+    return this.http.post(this.lister.reqstring + 'oauth/refresh', postData, { headers: this.headers }).map(
+      response => {
+        const expDate = new Date();
+        expDate.setSeconds(expDate.getSeconds() + response.json().expires_in);
+        localStorage.setItem('t', response.json().access_token);
+        localStorage.setItem('rt', response.json().refresh_token);
+        this.token = response.json().access_token;
+
+        localStorage.setItem('ts', '' + expDate.getTime());
+
+        return response.json().access_token;
+      }).catch(
+        (error: Response) => {
+          return Observable.throw('Something went wrong');
+        });
+
+  }
+
+  // tslint:disable-next-line:member-ordering
+  isAuthenticated() {
+    return this.token != null;
+  }
 
   // tslint:disable-next-line:member-ordering
   private headers = new Headers(); // headers for each request
@@ -132,84 +132,75 @@ isAuthenticated() {
   private errorMessage;
 
 
-getRollene() {
-  // console.log('getRollene');
-  return this.http.get(this.lister.reqstring + '/rollene', this.getOpts())
-    .map(response => {
-   //   console.log(response);
+  getRollene() {
+    // console.log('getRollene');
+    return this.http.get(this.lister.reqstring + '/rollene', this.getOpts())
+      .map(response => {
+        //   console.log(response);
 
-      return response.json();
-    }).catch(
-    (error: Response) => {
-      return Observable.throw(error.json());
+        return response.json();
+      }).catch(
+        (error: Response) => {
+          return Observable.throw(error.json());
+        }
+      );
+  }
+
+
+
+  /*
+    public socialSignIn(socialPlatform: string) {
+      let socialPlatformProvider;
+      socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
+      this.socialAuthService.signIn(socialPlatformProvider).then(
+        (userData) => {
+          console.log(socialPlatform + ' sign in data : ', userData);
+          // Now sign-in with userData
+          // ...
+          this.loggedIn = true;
+        }
+      );
     }
-    );
-}
+  */
 
 
 
-signInWithEmailAndPassword(email, pasword) {
-  const postData = {
-    //  username: 'zemlak.sandra@example.net', // a User in Laravel database
-    username: email,
 
-    // username: 'eldon33@example.com',
-    password: pasword, // 'secret' // the user's password
-  };
-  // return this.http.post('http://rig.rj-web.no/public/oauth/token', postData, { headers: this.headers }).map(
+  signInWithEmailAndPassword(email, pasword) {
+    const postData = {
+      username: email,
+      password: pasword,
+    };
+    return this.http.post(this.lister.reqstring + 'oauth/token', postData, { headers: this.headers }).map(
+      response => {
+        const expDate = new Date();
+        expDate.setSeconds(expDate.getSeconds() + response.json().expires_in);
+        localStorage.setItem('t', response.json().access_token);
+        localStorage.setItem('rt', response.json().refresh_token);
 
-  return this.http.post(this.lister.reqstring + 'oauth/token', postData, { headers: this.headers }).map(
+        this.token = response.json().access_token;
+        localStorage.setItem('ts', '' + expDate.getTime());
+        return response.json().access_token;
+      }).catch(
+        (error: Response) => {
+          return Observable.throw('Something went wrong');
+        });
+  }
 
-    response => {
-      const expDate = new Date();
-      expDate.setSeconds(expDate.getSeconds() + response.json().expires_in);
-      localStorage.setItem('t', response.json().access_token);
-      localStorage.setItem('rt', response.json().refresh_token);
 
-      this.token = response.json().access_token;
-      localStorage.setItem('ts', '' + expDate.getTime());
-      return response.json().access_token;
-    }).catch(
-    (error: Response) => {
-      return Observable.throw('Something went wrong');
+
+  getOpts() {
+    return new RequestOptions({
+      headers: new Headers({
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + this.getToken()
+      })
     });
+  }
 
-}
-
-
-// tslint:disable-next-line:member-ordering
-
-getOpts() {
-
-  return new RequestOptions({
-    headers: new Headers({
-      'Accept': 'application/json',
-      'Authorization': 'Bearer ' + this.getToken()
-    })
-  });
-
-}
-/*
-getBlobOpts() {
-
-const head = new Headers({
-  'Accept': 'application/json',
-  'Authorization': 'Bearer ' + this.getToken(),
-});
-
-const test =  new RequestOptions({
-  headers: head,
-  responseType: ResponseContentType.Blob
-});
-
-return test;
-
-}
-*/
-
-getToken() {
+  getToken() {
     return this.token;
-}
+  }
 
 
 }

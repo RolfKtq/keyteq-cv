@@ -1,6 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { AuthService } from './auth.service';
+// import { AuthService } from './auth.service';
+import { Router } from '@angular/router';
+import { Headers, Response, RequestOptions, Http, ResponseContentType } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+
+
+import {
+  AuthService,
+  GoogleLoginProvider
+} from 'angular5-social-login';
+import { Lister } from '../services/lister';
 
 @Component({
   selector: 'app-signin',
@@ -8,8 +18,13 @@ import { AuthService } from './auth.service';
   styleUrls: ['./signin.component.css']
 })
 export class SigninComponent implements OnInit {
-
-  constructor(private authService: AuthService) { }
+  token: string;
+  private headers = new Headers();
+  constructor(
+    private socialAuthService: AuthService,
+    private router: Router,
+    private http: Http,
+    private lister: Lister) { }
 
   ngOnInit() {
   }
@@ -18,28 +33,87 @@ export class SigninComponent implements OnInit {
     localStorage.clear();
     const email = form.value.email;
     const password = form.value.password;
-    return  this.authService.signinUser(email, password);
+    return this.signinUser(email, password);
   }
 
-// "NL63ZZZ321096450000"
-/*
+  signinUser(email: string, password: string) {
+    return this.signInWithEmailAndPassword(email, password)
+      .subscribe(
+        response => {
+          this.getRollene().subscribe(
+            resp => {
+              for (let i = 0; i < resp.data.length; i++) {
+                localStorage.setItem(resp.data[i], '');
+              }
+              this.router.navigate(['./home']);
+            });
+        }
+        ,
+        (error) => console.log(error)
+      );
+  }
+  public socialSignIn(socialPlatform: string) {
+    let socialPlatformProvider;
+    socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
+    this.socialAuthService.signIn(socialPlatformProvider).then(
+      (userData) => {
+        console.log(socialPlatform + ' sign in data : ', userData);
+        // Now sign-in with userData
+        // ...
+        // this.loggedIn = true;
+        // alert(userData.email);
+        return this.signinUser(userData.email, '');
+      }
+    );
+  }
 
 
-^NL - The first 2 characters need to be NL//
+  signInWithEmailAndPassword(email, pasword) {
+    const postData = {
+      username: email,
+      password: pasword,
+    };
+    return this.http.post(this.lister.reqstring + 'oauth/token', postData, { headers: this.headers }).map(
+      response => {
+        const expDate = new Date();
+        expDate.setSeconds(expDate.getSeconds() + response.json().expires_in);
+        localStorage.setItem('t', response.json().access_token);
+        localStorage.setItem('rt', response.json().refresh_token);
 
-\d{2} - The next 2 characters need to be numeric
+        this.token = response.json().access_token;
+        localStorage.setItem('ts', '' + expDate.getTime());
+        return response.json().access_token;
+      }).catch(
+        (error: Response) => {
+          return Observable.throw('Something went wrong');
+        });
+  }
 
-\w{3} - The next 3 characters need to be alfanumeric
 
-\d{8} - The next 8 characters need to be numeric
 
-.* - anything
+  getRollene() {
+    // console.log('getRollene');
+    return this.http.get(this.lister.reqstring + '/rollene', this.getOpts())
+      .map(response => {
+        //   console.log(response);
 
-\d{4}$ - The last 4 characters need to be numeric
-
-/^NL\d{2}\w{3}\d{8}.*\d{4}$/.test("NL63ZZZ321096450000")
-
-*/
-
+        return response.json();
+      }).catch(
+        (error: Response) => {
+          return Observable.throw(error.json());
+        }
+      );
+  }
+  getOpts() {
+    return new RequestOptions({
+      headers: new Headers({
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + this.getToken()
+      })
+    });
+  }
+  getToken() {
+    return this.token;
+  }
 
 }

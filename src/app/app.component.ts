@@ -18,21 +18,34 @@ import { LocationStrategy } from '@angular/common';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private authService: AuthService, 
+  constructor(private authService: AuthService,
     private router: Router,
     private actRoute: ActivatedRoute,
     private lister: Lister,
     private url: LocationStrategy
   ) { }
 
+/*
+    ngOnInit() {
+      localStorage.clear();
+      if (!this.authService.isAuthenticated()) {
+        if (this.url.path().indexOf('/verify') > -1) {
+        } else {
+          this.router.navigate(['/kandidater']);
+        }
+      }
+    }
 
+*/
   ngOnInit() {
     localStorage.clear();
     if (!this.authService.isAuthenticated()) {
       if (this.url.path().indexOf('/verify') > -1) {
-      }else{
-        this.router.navigate(['/kandidater']);
+      } else {
+        this.router.navigate(['/signin']);
       }
     }
   }
+
+
 }

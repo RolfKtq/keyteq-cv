@@ -8,7 +8,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 import {
@@ -71,6 +71,33 @@ import { CvErfaringComponent } from './kandidater/kandidat/erfaring/cv-erfaring/
 import { AttestComponent } from './kandidater/kandidat/attest/attest.component';
 import { CvAttestComponent } from './kandidater/kandidat/attest/cv-attest/cv-attest.component';
 import { PdfGenerellComponent } from './pdf-generell/pdf-generell.component';
+
+
+import {
+  SocialLoginModule,
+  AuthServiceConfig,
+  GoogleLoginProvider,
+  FacebookLoginProvider,
+} from 'angular5-social-login';
+
+
+// Configs 
+export function getAuthServiceConfigs() {
+  const config = new AuthServiceConfig(
+    [
+      {
+        id: FacebookLoginProvider.PROVIDER_ID,
+        provider: new FacebookLoginProvider('Your-Facebook-app-id')
+      },
+      {
+        id: GoogleLoginProvider.PROVIDER_ID,
+        provider: new GoogleLoginProvider('477934884456-2lrfn9qlm53sud1v72lqqeink5ephqci.apps.googleusercontent.com')
+      },
+    ]
+  );
+  return config;
+}
+
 
 
 @NgModule({
@@ -141,9 +168,16 @@ import { PdfGenerellComponent } from './pdf-generell/pdf-generell.component';
     MatSnackBarModule,
     MatTooltipModule,
     MatStepperModule,
-
+    SocialLoginModule,
   ],
-  providers: [AuthService , DataStorageService, Logo, Lister, { provide: MAT_DATE_LOCALE, useValue: 'no-NB'}, ],
+    providers: [AuthService, DataStorageService, Logo, Lister, {
+    provide: MAT_DATE_LOCALE, useValue: 'no-NB'
+  },
+    {
+      provide: AuthServiceConfig,
+      useFactory: getAuthServiceConfigs
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

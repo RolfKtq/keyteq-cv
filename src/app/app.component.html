@@ -1,54 +1,49 @@
+<!--
 <mat-toolbar color="primary" style='color: #fff;  background-color:#000' *ngIf="!authService.isAuthenticated()">  
   <div>
     <img md-card-image class="image-card-style" src= "./assets/img/hvit-logo.png">
   </div>
-
   <span class="align_to_right"></span>
   <button mat-button [routerLink]="['signin']" ><mat-icon>account_circle</mat-icon>Logg inn</button>
- 
 </mat-toolbar>
-
 <mat-toolbar color="primary" style='color: #fff; background-color:#000' *ngIf="authService.isAuthenticated()">  
-    
       <div>
         <img md-card-image class="image-card-style" src= "./assets/img/hvit-logo.png">
       </div>
-    
-      
-      
       <button *ngIf="lister.harRolle('brukere')"   mat-button [routerLink]="['brukere']" class="menu-btn">BRUKERE</button>
       <button *ngIf="lister.harRolle('verktøy')" mat-button [routerLink]="['verktoy']" class="menu-btn">VERKTØY</button> 
-    <!--  <button  mat-button [routerLink]="['verktoy']" class="menu-btn">VERKTØY</button> -->
-
-      <button *ngIf="lister.harRolle('brakkerigg')" mat-button [routerLink]="['brakkerigg']" class="menu-btn">BRAKKERIGG</button>
-
-      <!--
-      <button *ngIf="lister.harRolle('verneutstyr')" mat-button [routerLink]="['verneutstyr']" class="menu-btn">VERNEUTSTUR</button>
-      -->
-      <!--
-      <button *ngIf="lister.harRolle('arbeidstøy')" mat-button [routerLink]="['arbeidstoy']" class="menu-btn">ARBEIDSTØY/PPE</button>
-      -->
-      
+      <button *ngIf="lister.harRolle('brakkerigg')" mat-button [routerLink]="['brakkerigg']" class="menu-btn">BRAKKERIGG</button>   
       <button *ngIf="lister.harRolle('kandidat')" mat-button [routerLink]="['kandidater']" class="menu-btn">KANDIDATER (CV)</button>
-     
       <button *ngIf="lister.harRolle('stoffkartotek')" mat-button [routerLink]="['stoffkartotek']" class="menu-btn">STOFFKARTOTEK</button>
-    
-
       <span class="align_to_right"></span>
-
       <button mat-button (click)="authService.logout()"  >  <mat-icon>account_circle</mat-icon>Logg ut</button>  
-     
       <div *ngIf="lister.harRolle('roller')">
-        <!--  <button  mat-button [routerLink]="['image']" class="menu-btn">IMAGE</button>-->
+          <button *ngIf="lister.harRolle('roller')"   mat-button [routerLink]="['roller']" class="menu-btn">ROLLER</button>
+      </div>
+    </mat-toolbar>    
+<router-outlet></router-outlet>
+-->
+
+<mat-toolbar color="primary" style='color: #777;' *ngIf="!authService.isAuthenticated()">  
+  <div>
+    <img md-card-image class="image-card-style" src= "./assets/img/BSI-OFFSHORE-LOGO-VEKTOR-mob-header.svg">
+  </div>
+  <span class="align_to_right"></span>
+  <button mat-button [routerLink]="['signin']" ><mat-icon>account_circle</mat-icon>Logg inn</button>
+</mat-toolbar>
+<mat-toolbar color="primary" style='color: #777;' *ngIf="authService.isAuthenticated()">  
+      <div>
+        <img md-card-image class="image-card-style" src= "./assets/img/BSI-OFFSHORE-LOGO-VEKTOR-mob-header.svg">
+      </div>
+      <button *ngIf="lister.harRolle('brukere')"   mat-button [routerLink]="['brukere']" class="menu-btn">BRUKERE</button>
+      <button *ngIf="lister.harRolle('verktøy')" mat-button [routerLink]="['verktoy']" class="menu-btn">VERKTØY</button> 
+      <button *ngIf="lister.harRolle('brakkerigg')" mat-button [routerLink]="['brakkerigg']" class="menu-btn">BRAKKERIGG</button>      
+      <button *ngIf="lister.harRolle('kandidat')" mat-button [routerLink]="['kandidater']" class="menu-btn">KANDIDATER (CV)</button>
+      <button *ngIf="lister.harRolle('stoffkartotek')" mat-button [routerLink]="['stoffkartotek']" class="menu-btn">STOFFKARTOTEK</button>
+      <span class="align_to_right"></span>
+      <button mat-button (click)="authService.logout()" >  <mat-icon>account_circle</mat-icon>Logg ut</button>  
+      <div *ngIf="lister.harRolle('roller')">
           <button *ngIf="lister.harRolle('roller')"   mat-button [routerLink]="['roller']" class="menu-btn">ROLLER</button>
       </div>
     </mat-toolbar>
-    
-        
-       
-       
-
-
-    
 <router-outlet></router-outlet>
-
