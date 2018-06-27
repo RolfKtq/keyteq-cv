@@ -81,7 +81,7 @@ import {
 } from 'angular5-social-login';
 
 
-// Configs 
+// Configs
 export function getAuthServiceConfigs() {
   const config = new AuthServiceConfig(
     [

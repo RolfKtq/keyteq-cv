@@ -10,10 +10,10 @@ import { Headers, Response, RequestOptions, Http, ResponseContentType } from '@a
 
 // tslint:disable-next-line:import-blacklist
 // import { Observable } from 'rxjs/Rx';
-import { Observable } from 'rxjs/Observable'
+import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { Observer } from 'rxjs/Observer';
-import { Subscription } from 'rxjs/Subscription';//
+import { Subscription } from 'rxjs/Subscription'; //
 // import 'rxjs/add/operator/timer';
 import 'rxjs/add/observable/timer';
 
